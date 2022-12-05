@@ -1,0 +1,1 @@
+{"name":"Local: min_moves","url":"d:\\cp concepts\\DP\\climbing_stairs_with_min_moves\\min_moves.cpp","tests":[{"id":1670226667717,"input":"1\n10\n1 1 1 4 9 8 1 1 10 1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\cp concepts\\DP\\climbing_stairs_with_min_moves\\min_moves.cpp","group":"local","local":true}
