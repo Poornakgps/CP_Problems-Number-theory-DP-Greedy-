@@ -1,0 +1,1 @@
+{"name":"Local: jumps","url":"d:\\cp concepts\\DP\\climbing_stairs_using_jumps\\jumps.cpp","tests":[{"id":1670223342066,"input":"1\n13\n5 5 2 4 1 5 9 8 6 3 8 9 1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\cp concepts\\DP\\climbing_stairs_using_jumps\\jumps.cpp","group":"local","local":true}
