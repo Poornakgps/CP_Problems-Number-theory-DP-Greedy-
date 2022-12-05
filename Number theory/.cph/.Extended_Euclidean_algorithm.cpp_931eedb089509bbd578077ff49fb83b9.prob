@@ -1,0 +1,1 @@
+{"name":"Local: Extended_Euclidean_algorithm","url":"d:\\cp concepts\\Number theory\\Extended_Euclidean_algorithm.cpp","tests":[{"id":1666675423007,"input":"1\n81 57","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\cp concepts\\Number theory\\Extended_Euclidean_algorithm.cpp","group":"local","local":true}

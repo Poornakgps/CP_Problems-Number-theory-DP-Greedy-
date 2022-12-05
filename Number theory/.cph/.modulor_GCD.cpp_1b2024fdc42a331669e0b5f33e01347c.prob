@@ -1,0 +1,1 @@
+{"name":"Local: modulor_GCD","url":"d:\\cp concepts\\Number theory\\modulor_GCD.cpp","tests":[{"id":1665885884571,"input":"2\n10 1 1\n9 1 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\cp concepts\\Number theory\\modulor_GCD.cpp","group":"local","local":true}
