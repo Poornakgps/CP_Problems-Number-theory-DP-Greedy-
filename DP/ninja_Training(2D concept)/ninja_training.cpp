@@ -21,7 +21,7 @@ class ninja_training{
         void print_answer();
 
     private:
-
+        //recursive form
         ll Algorithm(ll day, ll last, ll array[][3], ll dp[][4])
         {
             if (day==0)
@@ -52,6 +52,41 @@ class ninja_training{
             }
             
             return dp[day][last]= maxi;
+        }
+
+        ll tabulation_form()
+        {
+            ll days;
+            cin>>days;
+            ll array[days][3];
+            ll dp[days][4]={0};
+            for(int i=0; i<days; i++)
+            {
+                for(int j=0; j<3; j++)
+                    cin>>array[i][j];
+            }
+            dp[0][0]=max(array[0][1],array[0][2]);
+            dp[0][1]=max(array[0][0],array[0][2]);
+            dp[0][2]=max(array[0][1],array[0][0]);
+            dp[0][3]=max(array[0][1], dp[0][1]=max(array[0][0],array[0][2])) ;
+
+            for(int i=1; i<days; i++){
+
+                for(int last=0; last<4; last++){
+
+                    dp[i][last]=0;
+
+                    for(int task=0; task<3; task++ ){
+
+                        if(task!=last){
+
+                            ll point= array[i][task] + dp[i-1][task];
+                            dp[i][last]=max(dp[i][last],point);
+                        }
+                    }
+                }
+            } 
+            return dp[days-1][3];
         }
 };
 
