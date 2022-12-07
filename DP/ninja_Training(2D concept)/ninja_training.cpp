@@ -68,7 +68,7 @@ class ninja_training{
             dp[0][0]=max(array[0][1],array[0][2]);
             dp[0][1]=max(array[0][0],array[0][2]);
             dp[0][2]=max(array[0][1],array[0][0]);
-            dp[0][3]=max(array[0][1], dp[0][1]=max(array[0][0],array[0][2])) ;
+            dp[0][3]=max(array[0][1], dp[0][1]) ;
 
             for(int i=1; i<days; i++){
 
