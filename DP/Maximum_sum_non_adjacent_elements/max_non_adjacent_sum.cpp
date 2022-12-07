@@ -48,13 +48,11 @@ void max_sum_non_adjacent_elements::print_answer()
 
 int main()
 {
-    ll t;
-    cin>>t;
+    max_sum_non_adjacent_elements object1;
+    cin>>object1.testcases;
+    ll t=object1.testcases;
     while(t--)
     {
-        max_sum_non_adjacent_elements object1;
-        cin>>object1.testcases;
-
         object1.print_answer();
 
     }
