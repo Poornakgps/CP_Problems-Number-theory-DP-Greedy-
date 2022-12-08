@@ -21,8 +21,8 @@ class Algorithm{
 
     public:
         ll n,ans=0;
-        Algorithm();
-        ~Algorithm();
+        Algorithm();// construcor
+        ~Algorithm(); //destructor
 };
 
 Algorithm::Algorithm(){
