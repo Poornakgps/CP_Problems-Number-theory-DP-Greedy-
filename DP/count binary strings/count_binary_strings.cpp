@@ -24,15 +24,25 @@ void solve(){
     ll n;
     cin>>n;
 
-    ll dp[2][n+1]={0};
-    dp[0][1]=1;
-    dp[1][1]=1;
+    // ll dp[2][n+1]={0};
+    // dp[0][1]=1;
+    // dp[1][1]=1;
     
+    // for(int i=2; i<=n; i++){
+    //     dp[1][i]=dp[1][i-1]+dp[0][i-1];
+    //     dp[0][i]=dp[1][i-1];
+    // }
+    // cout<<dp[1][n]+dp[0][n]<<endl;
+    ll o=1;
+    ll z=1;
     for(int i=2; i<=n; i++){
-        dp[1][i]=dp[1][i-1]+dp[0][i-1];
-        dp[0][i]=dp[1][i-1];
+        ll temp1=o;
+        ll temp2=z+o;
+        o=temp2;
+        z=temp1;
     }
-    cout<<dp[1][n]+dp[0][n]<<endl;
+    ll ans=o+z;
+    cout<<ans<<endl;
 }
 
 int main(){
