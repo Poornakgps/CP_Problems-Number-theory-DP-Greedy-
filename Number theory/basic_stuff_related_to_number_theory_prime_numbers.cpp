@@ -4,7 +4,7 @@
 using namespace std;
 
 
-bool is_prime[100000001]; // all asigning prime initially
+bool is_prime[100000001]={false}; // all asigning prime initially
 
 vector<ll> kth_prime;
 
@@ -66,7 +66,4 @@ int main()
     cin>>num;
 
     prime_factors(num);
-
-
-
 }
