@@ -59,7 +59,6 @@ int main()
     sieve();
     ll k;
     cin>>k;
-
     cout<<kth_prime[k-1]<<endl;
 
     ll num;
