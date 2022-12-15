@@ -10,13 +10,8 @@ vector<ll> kth_prime;
 
 void sieve()
 {
-    // sieve of eretosthenes
-
-    // suppose they gave q queries q->1000000 (suppose)
-    // we need to print whether they r prime or not
-
     int maxN=90000000;
-    
+ 
     is_prime[0]=is_prime[1]=true; //since 1 and 0 are compostite numbers
     
     for(int i=2; i*i<=maxN; i++)
