@@ -5,6 +5,7 @@
         "random": "cpp",
         "chrono": "cpp",
         "complex": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "vector": "cpp"
     }
 }
