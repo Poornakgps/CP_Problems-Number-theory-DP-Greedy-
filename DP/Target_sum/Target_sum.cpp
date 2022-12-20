@@ -25,13 +25,6 @@ class Algorithm{
         ~Algorithm(); //destructor
 };
 
-// Algorithm::Algorithm()
-// {
-//     cin>>n;
-//     cout<<1<<endl;
-//     Algorithm(n);
-// }
-
 Algorithm::Algorithm(ll n){
 
     ll arr[n];
@@ -49,22 +42,21 @@ Algorithm::Algorithm(ll n){
         for(int j=0; j<(tar+1); j++){
 
             if(i==0 && j==0)
-               dp[i][j]=true;//,cout<<1<<" "; 
+               dp[i][j]=true; 
              
             else if(i==0)
-                dp[i][j]=false;//,cout<<0<<" ";
+                dp[i][j]=false;
             
             else if(j==0)
-                dp[i][j]=true;//,cout<<1<<" ";
+                dp[i][j]=true;
 
             else{
                 if(j>=arr[i-1])
-                    dp[i][j]= (dp[i-1][j] || dp[i-1][j-arr[i-1]]);//cout<<dp[i][j]<<" ";
+                    dp[i][j]= (dp[i-1][j] || dp[i-1][j-arr[i-1]]);
                 else
-                     dp[i][j]=dp[i-1][j];//cout<<dp[i][j]<<" ";
+                     dp[i][j]=dp[i-1][j];
             }
         }
-        //cout<<endl;
     }
     ans=dp[n][tar];
 
