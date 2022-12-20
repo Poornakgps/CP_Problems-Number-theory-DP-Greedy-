@@ -22,7 +22,7 @@ class DP{
         ll value;
         ll jump_took;
         string path; 
-        DP(ll ind, ll value, ll jump_took, string path){
+        static void DP(ll ind, ll value, ll jump_took, string path){
             this->ind=ind;
             this->value=value;
             this->jump_took=jump_took;
@@ -56,14 +56,14 @@ void solve(){
         }
     }
     //cout<<dp[0]<<endl;
-    queue<DP> que;
+    deque<DP> que;
 
-    que.push(0,a[0],dp[0], 0+"");
+    que.push_back(DP(0,a[0],dp[0], 0+""));
     //cout<<que<<endl;
 
-    // while(que.size()>0){
-    //     DP rem=que.pop();
-    // }
+    while(que.size()>0){
+        DP rem=que.pop_front();
+    }
 }
 
 int main(){

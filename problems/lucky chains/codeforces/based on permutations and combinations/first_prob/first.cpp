@@ -31,46 +31,28 @@ int power(ll x, ll y)
 }
 
 void solve(){
-    ll n,m, flag=0;
-    cin>>n>>m;
-
-    ll ans[n+1];
-    for(int i=1; i<=n; i++){
-        ans[i]=i;
-    }
-    for(int i=1; i<=m; i++){
-        ll a,b;
-        cin>>a>>b;
-        ll maxx=0;
-        maxx=max(a,b);
-        ans[maxx]=min(ans[maxx],maxx-min(a,b));
-    }
-    ll sum=0;
-    ll effect=0;
-    ll temp=0;
-    cout<<endl;
-    for(int i=1; i<=n; i++){
-        if(ans[i]==i && effect==0){
-            sum+=ans[i];
+    ll n;
+    cin>>n;
+    string s;
+    cin>>s;
+    ll prev=1;
+    vector<ll> ans;
+    ans.push_back(1);
+    for(int i=1; i<n-1; i++){
+        if(s[i]==s[i-1]){
+            ans.push_back(prev);
+            //prev++;
         }
         else{
-            if(flag==0){
-                sum += min(ans[i-1]+1,ans[i]);
-                temp=min(ans[i-1]+1,ans[i]);
-            }
-            else{
-                sum+= min(temp+1, ans[i]);
-            }
-            temp=min(temp+1,ans[i]);
-            flag=1;
-            effect=1;
+            prev=i+1;
+            ans.push_back(i+1);
         }
     }
+    for(auto it : ans){
+        cout<<it<<" ";
+    }
     cout<<endl;
-    cout<<sum<<endl;
-
 }
-
 
 int main(){
     fastio();
@@ -79,4 +61,5 @@ int main(){
     while(t--){
         solve();
     }
+    return 0;
 }
