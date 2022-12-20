@@ -25,7 +25,6 @@ void sieve()
             is_prime[j]=0; // multiples of prime numbers becoming zero
         
     }
-
 }
 
 int main()

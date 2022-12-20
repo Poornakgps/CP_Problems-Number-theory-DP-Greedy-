@@ -1,0 +1,1 @@
+{"name":"Local: islands","url":"d:\\DSA\\Graphs\\C++\\number of islands\\islands.cpp","tests":[{"id":1671473388448,"input":"1\n2 7\n0 1 1 1 0 0 0 \n1 1 1 1 0 1 1","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\Graphs\\C++\\number of islands\\islands.cpp","group":"local","local":true}
