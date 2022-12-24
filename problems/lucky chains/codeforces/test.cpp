@@ -12,7 +12,7 @@
 #define ss second
 #define PI 3.141592653589793238462
 #define fastio() ios_base::sync_with_stdio(0);cin.tie(0)
-
+#define for(i,a,b) for(int i=a; i<b; i++) 
 
 using namespace std;
 
@@ -30,45 +30,86 @@ int power(ll x, ll y)
         return (x * (temp * temp)%MOD1)%MOD1;
 }
 
+// void solve(){
+//     ll n;
+//     cin>>n;
+
+//     ll a[n+1];
+//     ll d[n-1]={0};
+//     vector<int>v(n+1,1);
+//     for(int i=1; i<=n; i++){
+//         cin>>a[i];
+//         v[i]=a[i];
+//     }
+//     ll ans[n]={0};
+
+//     for(int i=1; i<=n; i++){
+//         ans[n-v[i]+1]=i;
+//     }
+    
+//     for(int i=1; i<=n; i++){
+        
+//         cout<<ans[i]<<" ";
+//     }
+//     cout<<endl;
+    
+// }
+
 void solve(){
-    ll n,m, flag=0;
-    cin>>n>>m;
 
-    ll ans[n+1];
-    for(int i=1; i<=n; i++){
-        ans[i]=i;
-    }
-    for(int i=1; i<=m; i++){
-        ll a,b;
-        cin>>a>>b;
-        ll maxx=0;
-        maxx=max(a,b);
-        ans[maxx]=min(ans[maxx],maxx-min(a,b));
-    }
-    ll sum=0;
-    ll effect=0;
-    ll temp=0;
-    cout<<endl;
-    for(int i=1; i<=n; i++){
-        if(ans[i]==i && effect==0){
-            sum+=ans[i];
-        }
-        else{
-            if(flag==0){
-                sum += min(ans[i-1]+1,ans[i]);
-                temp=min(ans[i-1]+1,ans[i]);
-            }
-            else{
-                sum+= min(temp+1, ans[i]);
-            }
-            temp=min(temp+1,ans[i]);
-            flag=1;
-            effect=1;
-        }
-    }
-    cout<<endl;
-    cout<<sum<<endl;
+    ll n;
+    cin>>n;
+    string a,b;
+    cin>>a>>b;
+    int a1=0,b1=0;
+    int s=0,d=0;
 
+    for(i,0,n){
+
+        if(a[i]==b[i]) s++;   
+        else d++;
+
+        if(a[i]=='1') a1++;
+
+        if(b[i]=='1') b1++;
+    }
+    if(s!=n && d!=n){
+        cout<<"NO\n";
+        return;
+    }
+    vector<pair<int,int>>v;
+    if(a==b){
+        int k=0;
+        for(i,0,n){
+            if(a[i]=='1'){
+                v.push_back({i+1,i+1});
+                k=i;
+            }
+            
+        }
+        if(v.size()%2){
+            v.push_back({n,n}), v.push_back({1,n}), v.push_back({1,n-1});
+            
+        }
+    }
+    else{
+
+        int k=0;
+        for(i,0,n){
+            if(a[i]=='1'){
+                v.push_back({i+1,i+1});
+                k=i;
+            }
+        }
+        if(v.size()%2==0){
+            v.push_back({n,n}),v.push_back({1,n}), v.push_back({1,n-1});
+        }     
+    }
+    cout<<"YES\n";
+    cout<<v.size()<<endl;
+    for(i,0,v.size()){
+        cout<<v[i].first<<" "<<v[i].second<<endl;
+    }
 }
 
 
