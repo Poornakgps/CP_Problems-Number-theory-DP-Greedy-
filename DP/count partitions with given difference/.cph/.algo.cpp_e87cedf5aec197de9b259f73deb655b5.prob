@@ -1,0 +1,1 @@
+{"name":"Local: algo","url":"d:\\DSA\\DP\\count partitions with given difference\\algo.cpp","tests":[{"id":1672052256120,"input":"2\n4 3\n5 2 6 4\n4 0\n1 1 1 1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\DP\\count partitions with given difference\\algo.cpp","group":"local","local":true}

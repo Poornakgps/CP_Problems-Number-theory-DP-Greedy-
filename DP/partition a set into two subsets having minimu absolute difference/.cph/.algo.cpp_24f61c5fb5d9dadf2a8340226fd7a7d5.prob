@@ -1,0 +1,1 @@
+{"name":"Local: algo","url":"d:\\DSA\\DP\\partition a set into two subsets having minimu absolute difference\\algo.cpp","tests":[{"id":1672046166762,"input":"1\n4\n1 2 3 4","output":"0"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\DP\\partition a set into two subsets having minimu absolute difference\\algo.cpp","group":"local","local":true}

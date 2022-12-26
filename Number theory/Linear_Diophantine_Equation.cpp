@@ -6,11 +6,9 @@ using namespace std;
 ll gcd(ll a, ll b, ll &x,  ll &y)
 {
     if(b==0){
-    
-    x=1;
-    y=0;
-
-    return a;
+        x=1;
+        y=0;
+        return a;
     }
 
     ll x1,y1;
