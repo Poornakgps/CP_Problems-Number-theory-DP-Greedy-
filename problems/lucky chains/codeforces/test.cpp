@@ -3,7 +3,7 @@
 #include <vector>
 
 #define ll long long
-#define MOD 1000000007
+#define mod 1000000007
 #define MOD1 998244353
 #define pb push_back
 #define ppb pop_back
@@ -12,7 +12,6 @@
 #define ss second
 #define PI 3.141592653589793238462
 #define fastio() ios_base::sync_with_stdio(0);cin.tie(0)
-#define for(i,a,b) for(int i=a; i<b; i++) 
 
 using namespace std;
 
@@ -54,66 +53,118 @@ int power(ll x, ll y)
 //     cout<<endl;
     
 // }
+// ll a[1000000001][1000000001];
+// void sieve(){
+//     for(int i=1; i<=1e9; i++){
+//         for(int j=1; j<=1e9; j++){
+//             if(i<=507 || j<=507)
+//                 a[i][j]=((i%MOD)*(j%MOD))%MOD;
+//             else{
+//                 ll a1=i/10+i%10;
+//                 ll a2=i/10;
+//                 ll b1=j/10;
+//                 ll b2=j/10+j%10;
+//                 ll k= ( ((a1*b2)%MOD +(a2*b1)%MOD)%MOD+ ((a1*b1)%MOD+ (b2*a2)%MOD)%MOD )%MOD;
+//                 a[i][j]=k;
+//             }
+//         }
+//     }
+// }
 
-void solve(){
+// void solve(){
+//     ll n;
+//     cin>>n;
+//     ll ans=0;
 
-    ll n;
-    cin>>n;
-    string a,b;
-    cin>>a>>b;
-    int a1=0,b1=0;
-    int s=0,d=0;
+//     for(int i=1; i<=n; i++){
+      
+//         ans= (ans + a[i][i])%MOD;
+//     }
+//     for(int i=1; i<n; i++){
+      
+//         ans= (ans + a[i][i+1])%MOD;
+//     }
+//     ll sum= ((2*(1ll)*((1011)*(ans))%MOD)%MOD)%MOD;
+    
+//     cout<<sum<<endl;
+// }
+bool is_prime[200000]; // all asigning prime initially
 
-    for(i,0,n){
-
-        if(a[i]==b[i]) s++;   
-        else d++;
-
-        if(a[i]=='1') a1++;
-
-        if(b[i]=='1') b1++;
+void sieve()
+{
+    int maxN=200000;
+ 
+    is_prime[0]=is_prime[1]=true; //since 1 and 0 are compostite numbers
+    
+    for(int i=2; i*i<=maxN; i++)
+    {
+        if(!is_prime[i])
+        for(int j=i*i; j<=maxN; j+=i)
+            is_prime[j]=true; // multiples of prime numbers becoming zero
     }
-    if(s!=n && d!=n){
-        cout<<"NO\n";
-        return;
-    }
-    vector<pair<int,int>>v;
-    if(a==b){
-        int k=0;
-        for(i,0,n){
-            if(a[i]=='1'){
-                v.push_back({i+1,i+1});
-                k=i;
-            }
-            
-        }
-        if(v.size()%2){
-            v.push_back({n,n}), v.push_back({1,n}), v.push_back({1,n-1});
-            
-        }
-    }
-    else{
 
-        int k=0;
-        for(i,0,n){
-            if(a[i]=='1'){
-                v.push_back({i+1,i+1});
-                k=i;
-            }
-        }
-        if(v.size()%2==0){
-            v.push_back({n,n}),v.push_back({1,n}), v.push_back({1,n-1});
-        }     
-    }
-    cout<<"YES\n";
-    cout<<v.size()<<endl;
-    for(i,0,v.size()){
-        cout<<v[i].first<<" "<<v[i].second<<endl;
-    }
 }
 
+void solve(){
+    ll n;
+    cin>>n;
+    ll one=0;
+    ll a[n+1];
+    for(int i=1; i<=n; i++){
+        cin>>a[i];
+        if(!is_prime[a[i]]){
+            one++;
+        }
+    }
+    vector<ll> brk;
+    ll tt=a[1];
+    ll k=1;
+    for(int i=2; i<=n; i++){ 
+
+        tt =(tt^a[i]);
+        cout<<a[i]<<" "<<tt<<endl;
+        if(is_prime[tt]){
+
+            brk.push_back(i-k);
+
+            cout<<i-k<<endl;
+            //tt=a[i-1];
+            if(!is_prime[a[i-1]^a[i]]){
+                i--;
+                tt=a[i-1];
+            }
+            k=i;
+        }
+        else if(i==n){
+            brk.push_back(i-k);
+        }
+        cout<<a[i]<<" "<<tt<<endl;
+    }
+
+    ll ans=0;
+    for(int i=0; i<brk.size(); i++){
+        ans+=(brk[i]*(brk[i]+1))/2;
+    }
+    //if()
+    cout<<one<<endl;
+    cout<<ans+one<<endl;
+
+}
+// void solve(){
+//         ll n;
+//         cin >> n;
+//         ll sum = 0;
+//         ll k = n;
+//         n = n - 1;
+//         // cout<<k;
+//         ll diff = 4, num = 3;
+//         sum = ((((((n * (n + 1)) % mod) * ((2 * n + 1) % mod)) / 3) % mod) + ((n * (n + 1)) / 2) % mod) % mod;
+//         sum = ((sum % mod) + ((k) * (k)) % mod) % mod;
+//         cout << ((sum)*2022) % mod << endl;
+// }
 
 int main(){
+    sieve();
     fastio();
     ll t;
     cin>>t;
