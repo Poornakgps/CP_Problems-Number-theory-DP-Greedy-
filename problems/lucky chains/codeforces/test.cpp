@@ -29,6 +29,34 @@ int power(ll x, ll y)
         return (x * (temp * temp)%MOD1)%MOD1;
 }
 
+/**************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+   * * * * * * * * * * * *               * * * * * * * * * * *
+   * * * * * * * * * * * *                     * * * * * * * * * * *
+   * * * * * * * * * * * *                            * * * * * * * * * * *              
+   * * *           * * * *                                  * * * * * * * * * * *          
+   * * *           * * * *                            * * * * * * * * * * *                  * * * * * * * * * * *
+   * * *           * * * *                     * * * * * * * * * * *                               * * * * * * * * * * *    
+   * * *           * * * *               * * * * * * * * * * *                                            * * * * * * * * * * *
+   * * *           * * * *                                                                                     * * * * * * * * * * * *              
+   * * * * * * * * * * * *               * * * * * * * * * * *                                           * * * * * * * * * * *
+   * * * * * * * * * * * *                     * * * * * * * * * * *                               * * * * * * * * * * *
+   * * * * * * * * * * * *                     * * * * * * * * * * *                    * * * * * * * * * * *
+   * * *                                                   * * * * * * * * * * *      
+   * * *                                             * * * * * * * * * * *
+   * * *                                       * * * * * * * * * * *
+   * * *                                 * * * * * * * * * * *
+   * * *
+   * * *
+ *
+ * 
+ *
+ * 
+**************************************************************************************************/
+
 // void solve(){
 //     ll n;
 //     cin>>n;
@@ -105,70 +133,126 @@ void sieve()
 
 }
 
+// void solve(){
+//     ll n,m;
+//     cin>>n>>m;
+
+//     vector<ll> req;
+//     ll tsum=0,psum=0;
+
+//     for(int i=0; i<n; i++){
+//         ll temp;
+//         cin>>temp;
+//         if(i<m){
+//             tsum+=temp;
+//             psum+=temp;
+//         }
+//         else{
+//             if(temp<=0)
+//                 req.push_back(abs(temp));
+//             tsum+=temp;
+//         }
+        
+//     }
+//    // cout<<tsum<<" "<<psum<<endl;
+//     sort(req.begin(),req.end());
+//     for(auto it: req){
+//         cout<<it<<" ";
+//     }
+//     cout<<endl;
+
+//     if(tsum>=psum){
+//         cout<<0<<endl;
+//     }
+//     else{
+//         ll count=0;
+//         while(psum>tsum){
+//             tsum+= req.back();
+//             //cout<<req.back()<<endl;
+//             req.pop_back();
+//             count++;
+//             //cout<<tsum<<" "<<psum<<endl;
+//         }
+//         cout<<count<<endl;
+//     }
+// }
 void solve(){
     ll n;
     cin>>n;
-    ll one=0;
-    ll a[n+1];
-    for(int i=1; i<=n; i++){
+    //cout<<n<<endl;
+    ll a[n],q[n+1],p[n+1];
+    map<ll,ll> m;
+    vector<pair<ll,ll>> pp;
+    for(ll i=0; i<n; i++){
         cin>>a[i];
-        if(!is_prime[a[i]]){
-            one++;
-        }
+        m[a[i]]++;
+        pp.push_back({a[i],i+1});
     }
-    vector<ll> brk;
-    ll tt=a[1];
-    ll k=1;
-    for(int i=2; i<=n; i++){ 
+    sort(pp.begin(),pp.end());
+    if(m[1]>1 || m[n]<1){
+        cout<<"NO\n";
+        return;
+    }
 
-        tt =(tt^a[i]);
-        cout<<a[i]<<" "<<tt<<endl;
-        if(is_prime[tt]){
+    ll vis1[n+1]={0},vis2[n+1]={0};
+    ll least=0,least1=0;
+    for(int i=0; i<n; i++){
 
-            brk.push_back(i-k);
-
-            cout<<i-k<<endl;
-            //tt=a[i-1];
-            if(!is_prime[a[i-1]^a[i]]){
-                i--;
-                tt=a[i-1];
+        ll l=pp[i].first;
+        ll r=pp[i].second;   
+            if(vis1[l]==0){
+                q[r]=l;
+                vis1[l]=1;
+                while(vis2[least+1]==1)
+                    least++;
+                //cout<<least+1<<"1 "<<endl;
+                vis2[least+1]=1;
+                p[r]=least+1;
             }
-            k=i;
-        }
-        else if(i==n){
-            brk.push_back(i-k);
-        }
-        cout<<a[i]<<" "<<tt<<endl;
+            else if(vis2[l]==0){
+                p[r]=l;
+                while(vis1[least1+1]==1)
+                    least1++;
+                    //cout<<least1+1<<"2 "<<endl;
+                vis1[least1+1]=1;
+                vis2[l]=1;
+                q[r]=least1+1;
+                //least1++;
+                //cout<<
+            }
+            else{
+                cout<<"NO\n";
+                return;
+            }
+            
     }
-
-    ll ans=0;
-    for(int i=0; i<brk.size(); i++){
-        ans+=(brk[i]*(brk[i]+1))/2;
+    map<ll,ll>m1,m2;
+    for(int i=0; i<n; i++){
+        m1[p[i+1]]++;
+        m2[q[i+1]]++;
     }
-    //if()
-    cout<<one<<endl;
-    cout<<ans+one<<endl;
-
+    if(m1.size()!=n || m2.size() !=n){
+        cout<<"NO\n";
+        return;
+    }
+    cout<<"YES\n"; 
+    for(int i=1; i<=n; i++){
+        cout<<p[i]<<" ";
+    }
+    cout<<endl;
+    for(int i=1; i<=n; i++){
+        cout<<q[i]<<" ";
+    }
+    cout<<endl;
 }
-// void solve(){
-//         ll n;
-//         cin >> n;
-//         ll sum = 0;
-//         ll k = n;
-//         n = n - 1;
-//         // cout<<k;
-//         ll diff = 4, num = 3;
-//         sum = ((((((n * (n + 1)) % mod) * ((2 * n + 1) % mod)) / 3) % mod) + ((n * (n + 1)) / 2) % mod) % mod;
-//         sum = ((sum % mod) + ((k) * (k)) % mod) % mod;
-//         cout << ((sum)*2022) % mod << endl;
-// }
+
 
 int main(){
-    sieve();
+    //sieve();
     fastio();
     ll t;
     cin>>t;
-    while(t--){
+
+    while(t--)
         solve();
-    }
 }

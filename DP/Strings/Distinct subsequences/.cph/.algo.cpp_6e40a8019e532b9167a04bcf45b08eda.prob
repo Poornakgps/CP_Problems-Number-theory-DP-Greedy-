@@ -1,0 +1,1 @@
+{"name":"Local: algo","url":"d:\\DSA\\DP\\Strings\\Distinct subsequences\\algo.cpp","tests":[{"id":1672947177199,"input":"2\n13 2\ncodingniinjas\nin\n10 3\nbrootgroot\nbrt","output":"5\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\DP\\Strings\\Distinct subsequences\\algo.cpp","group":"local","local":true}
