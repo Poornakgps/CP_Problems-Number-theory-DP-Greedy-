@@ -1,0 +1,1 @@
+{"name":"Local: algo","url":"d:\\DSA\\DP\\Strings\\Edit distance\\algo.cpp","tests":[{"id":1673061597644,"input":"1\n11 6\nwhgtdwhgtdg\nasfgwc","output":""},{"id":1673062102572,"input":"1\n\nhorse\nros","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\DP\\Strings\\Edit distance\\algo.cpp","group":"local","local":true}
