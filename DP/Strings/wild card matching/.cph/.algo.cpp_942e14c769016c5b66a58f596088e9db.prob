@@ -1,0 +1,1 @@
+{"name":"Local: algo","url":"d:\\DSA\\DP\\Strings\\wild card matching\\algo.cpp","tests":[{"id":1673071438418,"input":"3\n?ay\nray\nab*cd\nabdefcd\nab?d\nabcc","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\DP\\Strings\\wild card matching\\algo.cpp","group":"local","local":true}
