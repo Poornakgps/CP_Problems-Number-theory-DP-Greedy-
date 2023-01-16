@@ -53,7 +53,86 @@ void sieve()
 // }
 
 void solve(){
-    
+    ll n;
+    cin>>n;
+    ll a[n];
+    ll b[n];
+    for(int i=0; i<n; i++){
+        cin>>a[i];
+    }
+    for(int i=0; i<n; i++){
+        cin>>b[i];
+    }
+    ll maxp1=a[n-1],minp1=a[n-1];
+    ll maxp2=b[n-1],minp2=b[n-1];
+    ll ans1=0,ans2=0,ans3=0,ans4=0;
+
+    for(int i=n-2; i>=0; i--){
+        if(a[i]>=maxp1 && b[i]>= maxp1){
+            maxp1=min(a[i],b[i]);
+        }
+        else if(a[i]<=minp1 && b[i]<=minp1){
+            minp1=max(a[i],b[i]);
+        }
+        else if((a[i]<minp1 && b[i]>maxp1) ||  (a[i]<minp1 && b[i]>maxp1) ){
+            if((a[i]<minp1 && b[i]>maxp1)){
+                ll temp1=maxp1-a[i];
+                ll temp2=b[i]-minp1;
+                if(min(temp1,temp2)==temp1 && temp1!=temp2){
+                    minp1=a[i];
+                }
+                else{
+                    maxp1=b[i];
+                }
+            }
+            else{
+                ll temp1=maxp1-b[i];
+                ll temp2=a[i]-minp1;
+                if(min(temp1,temp2)==temp1 && temp1!=temp2){
+                    minp1=b[i];
+                }
+                else{
+                    maxp1=a[i];
+                }     
+            }
+        }
+        ans1=maxp1-minp1;
+
+        if(a[i]>=maxp2 && b[i]>= maxp2){
+
+            maxp2=min(a[i],b[i]);
+        }
+        else if(a[i]<=minp2 && b[i]<=minp2){
+            minp2=max(a[i],b[i]);
+        }
+        else if((a[i]<minp2 && b[i]>maxp2) ||  (a[i]<minp2 && b[i]>maxp2) ){
+            if((a[i]<minp2 && b[i]>maxp2)){
+                ll temp1=maxp2-a[i];
+                ll temp2=b[i]-minp2;
+                if(min(temp1,temp2)==temp1 && temp1!=temp2){
+                    minp2=a[i];
+                }
+                else{
+                    maxp2=b[i];
+                }
+            }
+            else{
+                ll temp1=maxp2-b[i];
+                ll temp2=a[i]-minp2;
+                if(min(temp1,temp2)==temp1 && temp1!=temp2){
+                    minp2=b[i];
+                }
+                else{
+                    maxp2=a[i];
+                }     
+            }
+        }
+        ans2=maxp2-minp2;
+        // cout<<i<<endl;
+        // cout<<maxp1<<" "<<minp1<<endl;
+        // cout<<maxp2<<" "<<minp2<<endl;
+    }
+    cout<<min(ans1,ans2)<<endl;
 }
 
 int main(){

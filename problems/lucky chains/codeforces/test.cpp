@@ -24,11 +24,21 @@ int power(ll x, ll y)
         return 1;
     temp = power(x, y / 2);
     if (y % 2 == 0)
-        return ((temp %MOD1)* temp)%MOD1;
+        return ((temp %mod)* temp)%mod;
     else
-        return (x * (temp * temp)%MOD1)%MOD1;
+        return ((x)%mod * (((temp)%mod) * temp)%mod)%mod;
 }
-
+ll bpow(ll x, ll v) {	
+	if (v == 0)
+		return 1 % mod;
+ 
+	if (v % 2 == 1)
+		return (x * bpow(x, v - 1)) % mod;
+ 
+	ll r = bpow(x, v / 2);
+ 
+	return (r * r) % mod;	
+}
 /**************************************************************************************************
  * 
  * 
@@ -56,66 +66,6 @@ int power(ll x, ll y)
  *
  * 
 **************************************************************************************************/
-
-// void solve(){
-//     ll n;
-//     cin>>n;
-
-//     ll a[n+1];
-//     ll d[n-1]={0};
-//     vector<int>v(n+1,1);
-//     for(int i=1; i<=n; i++){
-//         cin>>a[i];
-//         v[i]=a[i];
-//     }
-//     ll ans[n]={0};
-
-//     for(int i=1; i<=n; i++){
-//         ans[n-v[i]+1]=i;
-//     }
-    
-//     for(int i=1; i<=n; i++){
-        
-//         cout<<ans[i]<<" ";
-//     }
-//     cout<<endl;
-    
-// }
-// ll a[1000000001][1000000001];
-// void sieve(){
-//     for(int i=1; i<=1e9; i++){
-//         for(int j=1; j<=1e9; j++){
-//             if(i<=507 || j<=507)
-//                 a[i][j]=((i%MOD)*(j%MOD))%MOD;
-//             else{
-//                 ll a1=i/10+i%10;
-//                 ll a2=i/10;
-//                 ll b1=j/10;
-//                 ll b2=j/10+j%10;
-//                 ll k= ( ((a1*b2)%MOD +(a2*b1)%MOD)%MOD+ ((a1*b1)%MOD+ (b2*a2)%MOD)%MOD )%MOD;
-//                 a[i][j]=k;
-//             }
-//         }
-//     }
-// }
-
-// void solve(){
-//     ll n;
-//     cin>>n;
-//     ll ans=0;
-
-//     for(int i=1; i<=n; i++){
-      
-//         ans= (ans + a[i][i])%MOD;
-//     }
-//     for(int i=1; i<n; i++){
-      
-//         ans= (ans + a[i][i+1])%MOD;
-//     }
-//     ll sum= ((2*(1ll)*((1011)*(ans))%MOD)%MOD)%MOD;
-    
-//     cout<<sum<<endl;
-// }
 bool is_prime[200000]; // all asigning prime initially
 
 void sieve()
@@ -134,125 +84,135 @@ void sieve()
 }
 
 // void solve(){
-//     ll n,m;
-//     cin>>n>>m;
+//     ll n,x;
+//     cin>>n>>x;
 
-//     vector<ll> req;
-//     ll tsum=0,psum=0;
+//     ll arr[n];
+//     ll sum=0;
+    
+//     for(int i=0; i<n; i++){
+//         cin>>arr[i];
+//         sum=(sum+arr[i]);
+//     }
+//     map<ll,ll> m;
+//     for(int i=0; i<n; i++){
+//         ll k=(sum-arr[i]);
+//         m[k]++;
+//     }
+//     for(auto it: m){
 
+//         if(it.ss%x==0){
+//             ll kk=0;
+//             ll temp=it.ss;
+//             ll flag=0;
+//             while(temp%x==0){
+//                 kk++;
+//                 temp=temp/x;
+//                 flag=1;
+//             }
+//             if(flag==1){
+//                 m[it.ff +kk]=m[it.ff +kk]+temp;
+//                 m[it.ff]=0;
+//             }
+//         }     
+//     }
+//     ll ans;
+//     for(auto it: m){
+//         if(it.ss>0){
+//             ans=it.ff;
+//             break;
+//         }
+//     }
+//     ans=min(ans,sum);
+//     ll k=bpow(x,ans);
+//     cout<<1ll*k<<endl;
+// }
+// void solve(){
+//     ll n;
+//     cin>>n; 
+
+//     vector<ll> v;
+//     ll maxx=0,ind=0;
 //     for(int i=0; i<n; i++){
 //         ll temp;
 //         cin>>temp;
-//         if(i<m){
-//             tsum+=temp;
-//             psum+=temp;
+//         v.push_back(temp);
+//         if(maxx<=temp){
+//             maxx=temp;
+//             ind=i;
 //         }
-//         else{
-//             if(temp<=0)
-//                 req.push_back(abs(temp));
-//             tsum+=temp;
+//     }
+//     ll sum=0,avg=0;
+//     ll ans=0;
+//     for(int i=0; i<n; i++){
+//         sum+=v[i];
+//         if(i<=ind){
+//             avg=ceil((float)sum/(i+1));
+//             if(v[0]<=avg)
+//                 ans=avg;
 //         }
-        
-//     }
-//    // cout<<tsum<<" "<<psum<<endl;
-//     sort(req.begin(),req.end());
-//     for(auto it: req){
-//         cout<<it<<" ";
-//     }
-//     cout<<endl;
-
-//     if(tsum>=psum){
-//         cout<<0<<endl;
-//     }
-//     else{
-//         ll count=0;
-//         while(psum>tsum){
-//             tsum+= req.back();
-//             //cout<<req.back()<<endl;
-//             req.pop_back();
-//             count++;
-//             //cout<<tsum<<" "<<psum<<endl;
+//         if(v[i]>=avg){
+//             avg=ceil((float)sum/(i+1));
 //         }
-//         cout<<count<<endl;
+//        // cout<<avg<<endl;
 //     }
+//     cout<<max(avg,ans)<<endl;
 // }
 void solve(){
     ll n;
     cin>>n;
-    //cout<<n<<endl;
-    ll a[n],q[n+1],p[n+1];
-    map<ll,ll> m;
-    vector<pair<ll,ll>> pp;
-    for(ll i=0; i<n; i++){
+
+    ll a[n], b[n];
+    for(int i=0; i<n; i++){
         cin>>a[i];
-        m[a[i]]++;
-        pp.push_back({a[i],i+1});
     }
-    sort(pp.begin(),pp.end());
-    if(m[1]>1 || m[n]<1){
-        cout<<"NO\n";
-        return;
+    for(int i=0; i<n; i++){
+        cin>>b[i];
+    }
+    ll min11=min(abs(a[n-1]-a[n-2]),abs(a[n-1]-b[n-2]));
+    ll minel1;
+    if(min11==abs(a[n-1]-a[n-2])){
+        minel1=min(a[n-1],a[n-2]);
+    }
+    else{
+        minel1=min(a[n-1],b[n-2]);
+    }
+    ll minel2;
+
+    ll min22=min(abs(b[n-1]-a[n-2]),abs(b[n-1]-b[n-2]));
+    if(min22==abs(b[n-1]-a[n-2])){
+        minel2=min(a[n-1],a[n-2]);
+    }
+    else{
+        minel2=min(b[n-1],b[n-2]);
+    }   
+    for(int i=n-3; i>=0; i--){
+        ll minn=min(min11,min22);
+        ll x=abs(min11-a[i]), y=abs(min22-a[i]);
+        
+        // min11=min(abs(min11-a[i]), abs(min11-b[i]));
+        // min22=min(abs(min22-a[i]), abs(min22-b[i]));
+
+        if(x<y){
+            min11=x;
+        }
+        else if(y>x){
+            min11=y;
+        }
+        else{
+
+        }
+        ll c=abs(min22-b[i]),d=abs(min11-b[i]);
     }
 
-    ll vis1[n+1]={0},vis2[n+1]={0};
-    ll least=0,least1=0;
-    for(int i=0; i<n; i++){
-
-        ll l=pp[i].first;
-        ll r=pp[i].second;   
-            if(vis1[l]==0){
-                q[r]=l;
-                vis1[l]=1;
-                while(vis2[least+1]==1)
-                    least++;
-                //cout<<least+1<<"1 "<<endl;
-                vis2[least+1]=1;
-                p[r]=least+1;
-            }
-            else if(vis2[l]==0){
-                p[r]=l;
-                while(vis1[least1+1]==1)
-                    least1++;
-                    //cout<<least1+1<<"2 "<<endl;
-                vis1[least1+1]=1;
-                vis2[l]=1;
-                q[r]=least1+1;
-                //least1++;
-                //cout<<
-            }
-            else{
-                cout<<"NO\n";
-                return;
-            }
-            
-    }
-    map<ll,ll>m1,m2;
-    for(int i=0; i<n; i++){
-        m1[p[i+1]]++;
-        m2[q[i+1]]++;
-    }
-    if(m1.size()!=n || m2.size() !=n){
-        cout<<"NO\n";
-        return;
-    }
-    cout<<"YES\n"; 
-    for(int i=1; i<=n; i++){
-        cout<<p[i]<<" ";
-    }
-    cout<<endl;
-    for(int i=1; i<=n; i++){
-        cout<<q[i]<<" ";
-    }
-    cout<<endl;
 }
-
 
 int main(){
     //sieve();
     fastio();
     ll t;
     cin>>t;
-
-    while(t--)
+    while(t--){
         solve();
+    }
 }

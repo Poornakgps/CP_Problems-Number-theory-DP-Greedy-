@@ -73,43 +73,44 @@ void sieve()
 }
 
 void solve(){
-    ll n,k,s;
-    cin>>n>>k>>s;
-    ll temp=s;
-    ll count=0;
-    while(temp>=1 ){
-        temp=temp/k;
-        count++;
+    
+    ll n;
+    cin>>n;
+    ll a[n];
+    ll m=0,k=0;
+    ll sum=0;
+    map<ll,ll> mm;
+    for(int i=0; i<n; i++){
+        cin>>a[i];
+        k= k| a[i];
+        sum+=a[i];
+        m=m^a[i];
+        mm[a[i]]++;
     }
-    //cout<<count<<endl;
-    count--;
-    if(count >n){
-        cout<<-2<<endl;
+    //cout<<k<<" "<<m<<endl;
+    if(k==sum){
+        cout<<"YES\n";
         return;
     }
-    ll a[count+1];
-    ll flag=0;
-    ll b[3]={-1,0,1};
-    ll sum=pow(k,count);
- 
-    a[count]=1;
-    s=s-sum;
-
-
-    ll i=count-1;
-    while(i!=0){
-        if(s<0){
-            
+    if(n%2==1){
+        cout<<"NO\n";
+        return;
+    }
+    if(m==0)
+        cout<<"YES\n";
+    else{
+        if(mm.size()%2==0){
+            if(n>3)
+                cout<<"YES\n";
+                else{
+                    cout<<"NO\n";
+                }
         }
-
-    }
-
-    if(flag==0){
-        cout<<-2<<endl;
-        return;
+        else{
+            cout<<"NO\n";
+        }
     }
 }
-
 int main(){
     fastio();
     ll t;

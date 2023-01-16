@@ -71,68 +71,131 @@ void sieve()
     }
 
 }
-
-bool comp(pair<ll,ll> a, pair<ll,ll> b){
-    return a.second>b.second;
+void solve()
+{
+    int n,k;
+    cin>>n>>k;
+    int a[n];
+    for(int i=0; i<n; i++) cin>>a[i];
+    ll dp = 0;
+    ll sum = 0;
+    for(int i=-1; i<n; i++){
+        ll alt = sum;
+        for(int j=i+1; j<min(n,i+32); j++){
+            ll temp=a[j];
+            temp=temp/pow(2,j-i);
+            alt+=temp;
+        }
+        dp=max(dp,alt);
+        if(i+1!=n){
+            sum+=a[i+1]-k;
+        }
+    }
+    cout<<dp<<endl;
 }
 
-void solve(ll t){
-    ll n,m;
-    cin>>n>>m;
-
-    vector<pair<ll,ll>> act,req;
-    
-    for(int i=0; i<n; i++){
-        ll temp;
-        cin>>temp;
-        act.push_back({temp,i+1});
-        req.push_back({temp,i});
+void solve(){
+    ll n;
+    cin>>n;
+    ll k;
+    cin>>k;
+    string s=to_string(n) ;
+    ll l=s.length();
+    ll o=0;
+    for(int i=0; i<l; i++){
+        if(s[i]=='0'){
+            o++;
+        }
     }
-    sort(req.begin(),req.end());
-    ll maxwin=0;
-    ll sum=0;
-    map<ll,ll> mp;
-    ll cha=0;
-    ll value=0;
-    for(int i=0; i<n; i++){
-        sum+=req[i].first;
-        if(sum<=m){
-            mp[req[i].first]++;
-            maxwin++;
+    if(o==0){
+        string str=s;
+        ll last;
+        if(2*k<=l)
+            last=2*k,sort(s.begin(),s.begin()+2*k);
+        else{
+            last=l;
+            sort(s.begin(),s.end());
+        }
+        map<char,ll> m;
+        
+        for(int i=last-1; i>=last-k; i--){
+            m[s[i]]++;
+        }
+
+        for(int i=0; i<l; i++){
+            if(m[str[i]]==0){
+                cout<<str[i];
+            }
+            else{
+                m[str[i]]--;
+            }
+        }
+        cout<<endl;
+        return;
+    }
+    else{
+        string str=s;
+        k=k;
+
+        vector<ll> v;
+        ll ind=0;
+        for(int i=0; i<k+1 && i<l; i++){
+
+            if(str[i]=='0'){
+                ind=i;
+                //sort(s.begin()+i+1,s.end());
+                break;
+            }
+            else{
+                v.push_back((ll)str[i]-48);
+                //cout<<v.front()<<endl;
+            }
+        }
+        sort(v.begin(),v.end());
+        ll req=k;
+        ll temp=k;
+        if(ind>2){
+            for(int i=0; i<ind-2; i++){
+                cout<<v[i];
+                k--;
+                temp--;
+                if(k==0){
+                    return;
+                }
+            }
         }
         else{
-            value=req[i].first;
-            if(i>0)
-                sum=sum-req[i-1].first;
-            break;
-        }
-    }
-    for(int i=0; i<n; i++){
-        if(mp[act[i].first]!=0){
-            mp[act[i].first]--;
-            act[i].second--;
-        }
-    }
-    sort(act.begin(),act.end(),comp);
 
-    for(int i=0; i<n; i++){
+        }
 
-        if(maxwin>=act[i].second){
-            
-            if(sum<=m && sum-act[i-1].first>=0 && maxwin+1==act[i-1].second){
-                cout<<i<<endl;
-                return;
+        
+        sort(s.begin()+ind,s.end());
+
+        map<char,ll> m;
+        cout<<l-k-ind<<endl;
+        for(int i=l-1; i>=l-k-ind+1; i--){
+            m[s[i]]++;
+        }
+
+        for(int i=0; i<l; i++){
+            if(m[str[i]]==0){
+                cout<<str[i];
             }
-            cout<<i+1<<endl;
-            return;
+            else{
+                m[str[i]]--;
+            }
         }
+        cout<<endl; 
     }
-    cout<<n+1<<endl;
+
 }
+
+
 int main(){
+
     ll t;
     cin>>t;
-    while(t--){ 
-     solve(t); 
+    while(t--){
+        solve();
     }
 }

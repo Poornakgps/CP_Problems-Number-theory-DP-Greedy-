@@ -1,0 +1,1 @@
+{"name":"Local: prob","url":"d:\\DSA\\problems\\lucky chains\\python\\prob.py","tests":[{"id":1673159940096,"input":"3\n--+-\n---\n++--+-","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\problems\\lucky chains\\python\\prob.py","group":"local","local":true}
