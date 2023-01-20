@@ -17,6 +17,7 @@ using namespace std;
 
 int gcd(int a, int b){ if(b==0) return a; else return gcd(b,a%b); }
 
+
 int power(ll x, ll y)
 {
     ll temp;
@@ -28,6 +29,49 @@ int power(ll x, ll y)
     else
         return (x * (temp * temp)%MOD1)%MOD1;
 }
+// Structure of the Binary Tree
+typedef struct treenode {
+    int info;
+    struct treenode *left,
+        *right;
+} treenode;
+ 
+// Function to create the Binary Tree
+treenode* create()
+{
+    int data;
+    treenode* tree;
+ 
+    // Dynamically allocating memory
+    // for the tree-node
+    tree = new treenode;
+ 
+    cout << "\nEnter data to be inserted "
+         << "or type -1 for no insertion : ";
+ 
+    // Input from the user
+    cin >> data;
+ 
+    // Termination Condition
+    if (data == -1)
+        return 0;
+ 
+    // Assign value from user into tree
+    tree->info = data;
+ 
+    // Recursively Call to create the
+    // left and the right sub tree
+    cout << "Enter left child of : "
+         << data;
+    tree->left = create();
+ 
+    cout << "Enter right child of : "
+         << data;
+    tree->right = create();
+ 
+    // Return the created Tree
+    return tree;
+};
 
 int main(){
     cout<<"Binary trees\n";

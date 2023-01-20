@@ -72,50 +72,57 @@ void sieve()
 
 }
 
-void solve(){
+// void solve(){
     
+//     ll n,m;
+//     cin>>n>>m;
+
+//     map<ll,ll>mp;
+
+//     ll a[n],p[m];
+//     ll summ=0;
+//     for(int i=0; i<n; i++){
+//         cin>>a[i];
+//         mp[a[i]]++;
+//         summ+=a[i];
+//     }
+//     for(int i=0; i<m; i++){
+//         cin>>p[i];
+//     }
+
+//     ll maxx=INT_MIN;
+//     ll ans[m]={0};
+//     ans[0]=summ;
+//     for(int i=1; i<m; i++){
+//         ans[i]=ans[i-1]-(i)*mp[i]-((i)*(i-1)/2)*mp[i] ;
+//     }
+
+//     for(int i=1; i<=m; i++){
+
+//          maxx=max(maxx,(ans[i-1]/i -1)*p[i-1]);
+//          cout<<ans[i-1]/i -1<<endl;
+//     }
+//    // cout<<endl;
+//     cout<<max(summ*p[0],maxx)<<endl;
+// }
+
+void solve(){
     ll n;
     cin>>n;
-    ll a[n];
-    ll m=0,k=0;
-    ll sum=0;
-    map<ll,ll> mm;
+    ll k=10000000;
+
     for(int i=0; i<n; i++){
-        cin>>a[i];
-        k= k| a[i];
-        sum+=a[i];
-        m=m^a[i];
-        mm[a[i]]++;
+        cout<<k-n+i<<" ";
     }
-    //cout<<k<<" "<<m<<endl;
-    if(k==sum){
-        cout<<"YES\n";
-        return;
-    }
-    if(n%2==1){
-        cout<<"NO\n";
-        return;
-    }
-    if(m==0)
-        cout<<"YES\n";
-    else{
-        if(mm.size()%2==0){
-            if(n>3)
-                cout<<"YES\n";
-                else{
-                    cout<<"NO\n";
-                }
-        }
-        else{
-            cout<<"NO\n";
-        }
-    }
+     cout<<endl;
 }
+
+
 int main(){
     fastio();
-    ll t;
-    cin>>t;
-    while(t--){
+    // ll t;
+    // cin>>t;
+    // while(t--){
         solve();
-    }
+    // }
 }
